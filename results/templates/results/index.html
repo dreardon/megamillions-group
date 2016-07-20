@@ -1,0 +1,9 @@
+{% if allDrawings %}
+    <ul>
+    {% for drawing in allDrawings %}
+        <li><a href="/results/{{ drawing.id }}/">{{ drawing.drawingDate }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No drawings are available.</p>
+{% endif %}
