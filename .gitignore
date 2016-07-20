@@ -52,6 +52,3 @@ Desktop.ini
 
 # Project settings
 ./site/
-
-# Migrations
-results/migrations/*
