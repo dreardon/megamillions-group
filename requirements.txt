@@ -2,3 +2,4 @@ Django==1.9.7
 requests
 django-debug-toolbar
 django-crontab
+sqlparse==0.1.19
