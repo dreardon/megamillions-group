@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         url = 'https://data.ny.gov/resource/h6w8-42p9.json'
-        payload = {'$order':'draw_date DESC', '$limit': 52}
+        payload = {'$order':'draw_date DESC', '$limit': 191}
         r = requests.get(url=url,params=payload)
         data = json.loads(r.text)
         in_dates = Drawing.objects.values_list('drawingDate')
@@ -23,23 +23,23 @@ class Command(BaseCommand):
                 a.save()
                 b = Drawing(megaNumbers=a,multiplier=result['multiplier'],drawingDate=drawdate)
                 b.save()
+                winningnumbers = str(result['winning_numbers']).split()
+                winningmegaball = int(result['mega_ball'])
                 for ticket in GroupTicket.objects.values_list('megaNumbers'):
                     numMatch = 0
                     megaMatch = False
-                    fullticket = MegaNumbers.objects.get(id=ticket[0])
-                    fullticket = str(fullticket).split()
-                    ticket_megaball = fullticket.pop()
-                    fullticket.pop()
-                    ticket_numbers = fullticket
+                    ticket_megaball = int(MegaNumbers.objects.values_list('megaBall', flat=True).get(id=ticket[0]))
+                    ticket_numbers = MegaNumbers.objects.values('numbers').get(id=ticket[0])
                     for val in ticket_numbers:
                         if val in winningnumbers:
                             numMatch = numMatch + 1
-                    if ticket_megaball==str(megaball):
+                    if ticket_megaball==winningmegaball:
                         megaMatch=True
                     prizeAmount = self.calcprize(numnumbers=numMatch, megaball=megaMatch)
                     if prizeAmount:
                         c = PrizesWon(drawing=b,groupPrizeAmount=prizeAmount)
                         c.save()
+                        print c
 
 
     @staticmethod

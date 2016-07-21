@@ -5,6 +5,6 @@ from .models import Drawing
 
 
 def index(request):
-    allDrawings = Drawing.objects.order_by('-drawingDate')[:20]
+    allDrawings = Drawing.objects.order_by('-drawingDate')[:100]
     context = {'allDrawings': allDrawings}
     return render(request, 'results/index.html', context)
