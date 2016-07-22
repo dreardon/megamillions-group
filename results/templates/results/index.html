@@ -1,9 +1,59 @@
-{% if allDrawings %}
-    <ul>
-    {% for drawing in allDrawings %}
-        <li><a href="/results/{{ drawing.id }}/">{{ drawing.drawingDate }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No drawings are available.</p>
-{% endif %}
+{% load staticfiles %}
+<html>
+    <head>
+        <title>MegaMillions Lottery Page</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3"><h1>MegaMillions Lottery Page</h1></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">Group Bank: ${{ toBePaid.groupPrizeAmount__sum }}.00</div>
+            <div class="col-sm-4 col-sm-offset-4">Group Already Paid Out :</div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Drawings</h2>
+                <div class="row">
+                    {% if allDrawings %}
+                        {% for drawing in allDrawings %}
+                            <div class="col-sm-4">{{ drawing.drawingDate }}</div>
+                            <div class="col-sm-4">Numbers: {{ drawing.megaNumbers.numbers }}</div>
+                            <div class="col-sm-4">MegaBall: {{ drawing.megaNumbers.megaBall }}</div>
+
+                        {% endfor %}
+                    {% else %}
+                        <p>No drawings are available.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <h2>Prizes Won</h2>
+                {% if allPrizes %}
+                    <ul type="square">
+                    {% for prize in allPrizes %}
+                        <li><a href="/results/{{ prize.id }}/">{{ prize.drawing.drawingDate }}</a> ${{ prize.groupPrizeAmount }}.00</li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No prizes have been won (yet).</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
