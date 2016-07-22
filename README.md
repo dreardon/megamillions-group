@@ -8,9 +8,7 @@ Essentially, it is meant to track on ongoing office pool.
 
 ## Installation
 
-### Quick start
-
-To set up a development environment quickly, first install [Python][0]. Then install and configure virtualenv.
+To set up a development environment quickly, first install Python. Then install and configure virtualenv.
 
 Install all dependencies:
 
@@ -21,9 +19,10 @@ Run migrations:
     python manage.py makemigrations
     python manage.py migrate
 
-### Detailed instructions
+Finally, after creating a Django super user, log in and add new lottery tickets to your profile.
 
-Take a look at the docs for more information.
+### TODO
 
-[0]: https://www.python.org/
-[1]: https://www.djangoproject.com/
+Create better administrative pages to add group players
+Create better administrative pages to create tickets
+Add the ability to deprecate group players and old tickets
