@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         url = 'https://data.ny.gov/resource/h6w8-42p9.json'
-        payload = {'$order':'draw_date DESC', '$limit': 191}
+        payload = {'$order':'draw_date DESC', '$limit': 8}
         r = requests.get(url=url,params=payload)
         data = json.loads(r.text)
         in_dates = Drawing.objects.values_list('drawingDate')
