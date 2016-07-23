@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load humanize %}
+
 <html>
     <head>
         <title>MegaMillions Lottery Page</title>
@@ -8,14 +10,36 @@
     <body>
 
         <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-2"><a href="/admin">Management</a></div>
+        </div>
+
+        <div class="row">
             <div class="col-sm-6 col-sm-offset-3"><h1>MegaMillions Lottery Page</h1></div>
         </div>
 
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4">Group Bank: ${{ toBePaid.groupPrizeAmount__sum }}.00</div>
-            <div class="col-sm-4 col-sm-offset-4">Group Already Paid Out :</div>
+            <div class="col-sm-4 col-sm-offset-4">
+                Group Bank:
+                {% if toBePaid.groupPrizeAmount__sum %}
+                    ${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}
+                {% else %}
+                    $0.00
+                {% endif %}
+            </div>
         </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                Already Paid Out:
+                {% if toBePaid.groupPrizeAmount__sum %}
+                    ${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}
+                {% else %}
+                    $0.00
+                {% endif %}
+            </div>
+        </div>
+
 
 
         <div class="row">

@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'results',
     'debug_toolbar',
+    'django.contrib.humanize',
 )
 
 MIDDLEWARE_CLASSES = (
