@@ -6,6 +6,7 @@
         <title>MegaMillions Lottery Page</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'results/style.css' %}" />
     </head>
     <body>
 
@@ -33,7 +34,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 Already Paid Out:
                 {% if toBePaid.groupPrizeAmount__sum %}
-                    ${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}
+                    ${{ paidOut|stringformat:"1.2f" }}
                 {% else %}
                     $0.00
                 {% endif %}
@@ -41,16 +42,15 @@
         </div>
 
 
-
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <h2>Drawings</h2>
                 <div class="row">
                     {% if allDrawings %}
                         {% for drawing in allDrawings %}
                             <div class="col-sm-4">{{ drawing.drawingDate }}</div>
-                            <div class="col-sm-4">Numbers: {{ drawing.megaNumbers.numbers }}</div>
-                            <div class="col-sm-4">MegaBall: {{ drawing.megaNumbers.megaBall }}</div>
+                            <div class="col-sm-5">Numbers: {{ drawing.megaNumbers.numbers }}</div>
+                            <div class="col-sm-3">MegaBall: {{ drawing.megaNumbers.megaBall }}</div>
 
                         {% endfor %}
                     {% else %}
@@ -58,9 +58,11 @@
                     {% endif %}
                 </div>
             </div>
+            <div class="col-sm-3">
 
+            </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <h2>Prizes Won</h2>
                 {% if allPrizes %}
                     <ul type="square">

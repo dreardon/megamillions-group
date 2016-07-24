@@ -9,5 +9,6 @@ def index(request):
     allDrawings = Drawing.objects.order_by('-drawingDate')[:50]
     allPrizes = PrizesWon.objects.order_by('-drawing')
     toBePaid = PrizesWon.objects.aggregate(Sum('groupPrizeAmount'))
+    paidOut = 0
     context = {'allDrawings': allDrawings, 'allPrizes': allPrizes, 'toBePaid':toBePaid}
     return render(request, 'results/index.html', context)
