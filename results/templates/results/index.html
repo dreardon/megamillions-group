@@ -43,25 +43,21 @@
 
 
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-8">
                 <div class="row">
-                    <div class="col-sm-4 col-sm-offset-4" style="text-align: center;"><h2><u>Drawings</u></h2></div>
+                    <div class="col-sm-4 col-sm-offset-4 drawings" style="text-align: center;"><h2><u>Drawings</u></h2></div>
                 </div>
-                <div class="row">
+                <div class="col-sm-12">
                     {% if allDrawings %}
                         {% for drawing in allDrawings %}
-                            <div class="col-sm-4">{{ drawing.drawingDate }}</div>
-                            <div class="col-sm-5">Numbers: {{ drawing.megaNumbers.numbers }}</div>
-                            <div class="col-sm-3">MegaBall: {{ drawing.megaNumbers.megaBall }}</div>
-
+                            <div class="drawingDate">{{ drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
+                            <div class="drawingNumbers">Numbers: {{ drawing.megaNumbers.numbers }}</div>
+                            <div class="drawingMegaball">MegaBall: {{ drawing.megaNumbers.megaBall }}</div><br />
                         {% endfor %}
                     {% else %}
                         <p>No drawings are available.</p>
                     {% endif %}
                 </div>
-            </div>
-            <div class="col-sm-3">
-
             </div>
 
             <div class="col-sm-4">

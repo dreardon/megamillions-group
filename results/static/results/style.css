@@ -1,5 +1,26 @@
-/*
+
 .row > div {
     outline: 1px solid #ccc;
 }
-*/
+
+.drawings {
+
+}
+
+.drawingDate {
+    margin-left: 5px;
+    float: left;
+    position: absolute;
+}
+
+.drawingMegaball {
+    margin-left: 280px;
+    float: left;
+    position: absolute;
+}
+
+.drawingNumbers {
+    margin-left: 100px;
+    float: left;
+    position: absolute;
+}
