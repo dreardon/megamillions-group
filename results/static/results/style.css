@@ -3,24 +3,44 @@
     outline: 1px solid #ccc;
 }
 */
-.drawings {
+.dollarTotals {
+  border-radius: 5px;
+  background: #0073e6;
+  color: white;
+  margin: auto;
+  width: 20%;
+  font-weight:bold;
+  font-size:16px;
+  height: 45px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 
+.dollarTotalLabel {
+    float: left;
+}
+
+.dollarTotalAmount {
+    float: right;
+}
+
+.lotteryBall {
+
+}
+
+.dataHeader {
+    text-align:center;
+    font-size:30px;
+    font-weight: bold;
 }
 
 .drawingDate {
-    margin-left: 5px;
-    float: left;
-    position: absolute;
-}
+    margin-left: 5px;}
 
 .drawingMegaball {
-    margin-left: 280px;
-    float: left;
-    position: absolute;
+    color:red;
 }
 
 .drawingNumbers {
-    margin-left: 100px;
-    float: left;
-    position: absolute;
+    color: black;
 }
