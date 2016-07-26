@@ -5,6 +5,9 @@ class MegaNumbers(models.Model):
     numbers = models.CharField(max_length=14, default=0)
     megaBall = models.IntegerField(default=0)
 
+    def numbers_as_list(self):
+        return self.numbers.split(' ')
+
 
 class Drawing(MegaNumbers):
     multiplier = models.IntegerField()
