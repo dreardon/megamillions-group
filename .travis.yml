@@ -8,7 +8,6 @@ before_script:
 - python manage.py migrate
 # command to run tests
 script:
-  python manage.py test
   coverage run --source=results manage.py test
 after_success:
   coveralls
