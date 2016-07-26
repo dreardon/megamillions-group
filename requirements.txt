@@ -3,3 +3,4 @@ requests
 django-debug-toolbar
 django-crontab
 sqlparse==0.1.19
+coverage==4.1

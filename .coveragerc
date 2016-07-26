@@ -1,0 +1,3 @@
+[run]
+source = results
+omit = results/test*.py

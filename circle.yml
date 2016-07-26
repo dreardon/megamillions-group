@@ -1,0 +1,12 @@
+machine:
+  python:
+    version: 2.7.9
+database:
+  pre:
+    - python manage.py makemigrations
+    - python manage.py migrate
+test:
+  override:
+    - coverage run manage.py test
+  post:
+    - coverage html -d $CIRCLE_ARTIFACTS
