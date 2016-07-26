@@ -45,21 +45,20 @@
       <h1>MegaMillions Group</h1>
       <p class="lead">This page has been established to check Megamillions group tickets against each drawing.</p>
         <div class="dollarTotals">
-            <p><div class="dollarTotalLabel">Prize Bank:</div>
+            <div class="dollarTotalLabel"><u>Prize Bank</u></div>
                 {% if toBePaid.groupPrizeAmount__sum %}
                     <div class="dollarTotalAmount">${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}</div>
                 {% else %}
                     <div class="dollarTotalAmount">$0.00</div>
                 {% endif %}
-            </p>
 
-            <p><div class="dollarTotalLabel">Prizes Paid Out:</div>
+            <br />
+            <div class="dollarTotalLabel"><u>Prizes Paid Out</u></div>
             {% if toBePaid.groupPrizeAmount__sum %}
                 <div class="dollarTotalAmount">${{ paidOut|stringformat:"1.2f" }}</div>
             {% else %}
                 <div class="dollarTotalAmount">$0.00</div>
             {% endif %}
-            </p>
         </div>
     </div>
   </div>
@@ -71,14 +70,15 @@
         <div class="dataHeader">Lottery Drawings</div>
         {% if allDrawings %}
                 {% for drawing in allDrawings %}
-                <div class="row ballRow">
+                <div class="row ballRow drawingData">
                     <div class="col-md-12">
-                        <div class="drawingDate">{{ drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
+                        <span class="drawingDate">{{ drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
                         <span class="drawingNumbers">
                             {% for number in drawing.numbers_as_list %}
                                 <span class="numberCircle">{{ number }}</span>
                             {% endfor %}
-                            <span class="numberCircle drawingMegaball">{{ drawing.megaBall|stringformat:"02d" }}</span>
+                                    <span class="drawingMegaball numberCircle">{{ drawing.megaBall|stringformat:"02d" }}</span>
+
                         </span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
         {% if allPrizes %}
             {% for prize in allPrizes %}
                  <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 prizeData">
                         <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
                         <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
                     </div>
