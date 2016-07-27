@@ -27,9 +27,8 @@ class Command(BaseCommand):
                     numMatch = 0
                     megaMatch = False
                     ticket_megaball = ticket.megaBall
-                    ticket_numbers = ticket.numbers
-                    for val in ticket_numbers:
-                        if val in winningnumbers:
+                    for val in ticket.numbers_as_list():
+                        if val in a.numbers_as_list():
                             numMatch = numMatch + 1
                     if ticket_megaball==winningmegaball:
                         megaMatch=True
