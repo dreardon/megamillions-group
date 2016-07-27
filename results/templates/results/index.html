@@ -111,7 +111,7 @@
                 <div class="row ballRow prizeData">
                     <div class="col-md-12">
                             <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
-                            <div class="ticketNumbers">
+                            <span class="ticketNumbers">
                                 {% for number in prize.ticket.numbers_as_list  %}
                                     {% if number in prize.drawing.numbers_as_list %}
                                         <span class="matchingNumberCircle">{{ number }}</span>
@@ -126,7 +126,7 @@
                                         <span class="numberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
                                     {% endif %}
                                 </span>
-                            </div>
+                            </span>
                             <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
                     </div>
                 </div>

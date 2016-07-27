@@ -79,14 +79,18 @@ body {
 }
 
 .prizeDate {
+   float:left;
+   padding-left:10px;
 
 }
 
 .prizeAmount {
+    float:right;
+    padding-right:10px;
 
 }
 
 .prizeData {
-   text-align:center;
-   height: auto;
+   padding-right: 40px;
+   height:35px;
 }
