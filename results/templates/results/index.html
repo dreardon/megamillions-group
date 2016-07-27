@@ -32,9 +32,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/admin/">Management</a></li>
+          <li class="active"><a href="/admin/">Management</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
@@ -110,10 +108,26 @@
         <div class="dataHeader">Prizes Won</div>
         {% if allPrizes %}
             {% for prize in allPrizes %}
-                 <div class="row">
-                    <div class="col-md-12 prizeData">
-                        <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
-                        <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
+                <div class="row ballRow prizeData">
+                    <div class="col-md-12">
+                            <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
+                            <div class="ticketNumbers">
+                                {% for number in prize.ticket.numbers_as_list  %}
+                                    {% if number in prize.drawing.numbers_as_list %}
+                                        <span class="matchingNumberCircle">{{ number }}</span>
+                                    {% else %}
+                                        <span class="numberCircle">{{ number }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                                <span class="drawingMegaball">
+                                    {% if prize.ticket.megaBall == prize.drawing.megaBall %}
+                                        <span class="matchingNumberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                    {% else %}
+                                        <span class="numberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
                     </div>
                 </div>
             {% endfor %}
@@ -123,8 +137,8 @@
       </div>
     </div>
 </div>
-
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{% static "results/script.js" %}"></script>
   </body>
 </html>

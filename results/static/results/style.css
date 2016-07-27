@@ -36,6 +36,16 @@ body {
     border: 2px solid #666;
 }
 
+.matchingNumberCircle {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    color: #fff;
+    background: #009900;
+    border: 2px solid #666;
+}
+
 .dataHeader {
     text-align:center;
     font-size:30px;
@@ -69,13 +79,14 @@ body {
 }
 
 .prizeDate {
-    padding-right:10px;
+
 }
 
 .prizeAmount {
-    padding-left:10px;
+
 }
 
 .prizeData {
    text-align:center;
+   height: auto;
 }
