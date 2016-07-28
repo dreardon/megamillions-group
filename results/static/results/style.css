@@ -50,11 +50,19 @@ body {
     text-align:center;
     font-size:30px;
     font-weight: bold;
+    background-color: #333;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+
 }
 
 .ticketNumbers {
     color: black;
     padding: 5px 0 5px 0;
+    height:35px;
 }
 
 .drawingData {
@@ -62,15 +70,16 @@ body {
 }
 
 .drawingDate {
-
+    height:35px;
 }
 
 .drawingMegaball {
     color:red;
+    height:35px;
 }
 
 .drawingNumbers {
-
+    height:35px;
 }
 
 .ballRow {
@@ -89,4 +98,24 @@ body {
 
 .prizeData {
    height:35px;
+}
+
+.vr {
+    height: 100%;
+    width: 2px;
+    border-right: 2px solid red;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.columnheader {
+    background-color: #666666;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }

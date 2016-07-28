@@ -112,13 +112,11 @@
                     <div class="col-md-12 prizeAmount">
                         ${{ prize.groupPrizeAmount }}.00
                     </div>
-
                 </div>
-                <div class="row ballRow prizeData">
-                    <div class="col-md-4">
-                        <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
-                    </div>
-                    <div class="col-md-8">
+
+                <div class="row ballRow">
+                    <div class="col-md-12">
+                        <span class="drawingDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
                         <span class="ticketNumbers">
                             {% for number in prize.ticket.numbers_as_list  %}
                                 {% if number in prize.drawing.numbers_as_list %}
