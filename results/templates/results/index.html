@@ -109,7 +109,7 @@
         {% if allPrizes %}
             {% for prize in allPrizes %}
                 <div class="row ballRow prizeData">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                             <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
                             <span class="ticketNumbers">
                                 {% for number in prize.ticket.numbers_as_list  %}
