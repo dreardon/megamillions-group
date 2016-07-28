@@ -108,11 +108,17 @@
         <div class="dataHeader">Prizes Won</div>
         {% if allPrizes %}
             {% for prize in allPrizes %}
+                <div class="row">
+                    <div class="col-md-12 prizeAmount">
+                        ${{ prize.groupPrizeAmount }}.00
+                    </div>
+
+                </div>
                 <div class="row ballRow prizeData">
-                    <div class="col-xs-2">
+                    <div class="col-md-4">
                         <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-md-8">
                         <span class="ticketNumbers">
                             {% for number in prize.ticket.numbers_as_list  %}
                                 {% if number in prize.drawing.numbers_as_list %}
@@ -130,10 +136,8 @@
                             </span>
                         </span>
                     </div>
-                    <div class="col-xs-2">
-                        <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
-                    </div>
                 </div>
+            <hr>
             {% endfor %}
         {% else %}
             <p>No prizes have been won (yet).</p>
