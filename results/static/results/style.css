@@ -9,7 +9,7 @@ body {
 }
 .dollarTotals {
   border-radius: 5px;
-  background: #0073e6;
+  background: #214289;
   color: white;
   font-weight:bold;
   font-size:16px;
@@ -46,17 +46,16 @@ body {
     border: 2px solid #666;
 }
 
-.dataHeader {
+.dataheader {
+    border-radius: 5px;
+    background: #214289;
+    color: white;
+    width:275px;
+    margin:auto;
+    padding: 5px 5px 5px 5px;
     text-align:center;
     font-size:30px;
     font-weight: bold;
-    background-color: #333;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
-
 }
 
 .ticketNumbers {
@@ -111,11 +110,6 @@ hr {
     margin-bottom: 5px;
 }
 
-.columnheader {
-    background-color: #666666;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+.drawingheader {
+    margin-bottom: 6px;
 }

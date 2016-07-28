@@ -65,7 +65,7 @@
 
     <div class="row">
       <div class="col-md-4">
-        <div class="dataHeader">Lottery Drawings</div>
+        <div class="dataheader drawingheader">Lottery Drawings</div>
         {% if allDrawings %}
                 {% for drawing in allDrawings %}
                 <div class="row ballRow drawingData">
@@ -86,7 +86,7 @@
         {% endif %}
       </div>
       <div class="col-md-4">
-        <div class="dataHeader">Group Tickets</div>
+        <div class="dataheader">Group Tickets</div>
          {% if activeTickets %}
             {% for ticket in activeTickets %}
                 <div class="row ballRow">
@@ -105,7 +105,7 @@
         {% endif %}
       </div>
       <div class="col-md-4">
-        <div class="dataHeader">Prizes Won</div>
+        <div class="dataheader">Prizes Won</div>
         {% if allPrizes %}
             {% for prize in allPrizes %}
                 <div class="row">
