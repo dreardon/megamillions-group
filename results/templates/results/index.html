@@ -109,25 +109,29 @@
         {% if allPrizes %}
             {% for prize in allPrizes %}
                 <div class="row ballRow prizeData">
-                    <div class="col-xs-12">
-                            <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
-                            <span class="ticketNumbers">
-                                {% for number in prize.ticket.numbers_as_list  %}
-                                    {% if number in prize.drawing.numbers_as_list %}
-                                        <span class="matchingNumberCircle">{{ number }}</span>
-                                    {% else %}
-                                        <span class="numberCircle">{{ number }}</span>
-                                    {% endif %}
-                                {% endfor %}
-                                <span class="drawingMegaball">
-                                    {% if prize.ticket.megaBall == prize.drawing.megaBall %}
-                                        <span class="matchingNumberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
-                                    {% else %}
-                                        <span class="numberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
-                                    {% endif %}
-                                </span>
+                    <div class="col-xs-2">
+                        <span class="prizeDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
+                    </div>
+                    <div class="col-xs-8">
+                        <span class="ticketNumbers">
+                            {% for number in prize.ticket.numbers_as_list  %}
+                                {% if number in prize.drawing.numbers_as_list %}
+                                    <span class="matchingNumberCircle">{{ number }}</span>
+                                {% else %}
+                                    <span class="numberCircle">{{ number }}</span>
+                                {% endif %}
+                            {% endfor %}
+                            <span class="drawingMegaball">
+                                {% if prize.ticket.megaBall == prize.drawing.megaBall %}
+                                    <span class="matchingNumberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                {% else %}
+                                    <span class="numberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                {% endif %}
                             </span>
-                            <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
+                        </span>
+                    </div>
+                    <div class="col-xs-2">
+                        <span class="prizeAmount">${{ prize.groupPrizeAmount }}.00</span>
                     </div>
                 </div>
             {% endfor %}

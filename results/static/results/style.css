@@ -1,8 +1,8 @@
-/*
+
 .row > div {
     outline: 1px solid #ccc;
 }
-*/
+
 
 body {
     background: #D3D3D3;
@@ -79,18 +79,13 @@ body {
 }
 
 .prizeDate {
-   float:left;
-   padding-left:10px;
 
 }
 
 .prizeAmount {
-    float:right;
-    padding-right:10px;
 
 }
 
 .prizeData {
-   padding-right: 40px;
    height:35px;
 }
