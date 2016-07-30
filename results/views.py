@@ -10,7 +10,7 @@ from .models import Drawing, PrizesWon, GroupTicket
 
 def index(request):
     allDrawings = Drawing.objects.order_by('-drawingDate')[:50]
-    allPrizes = PrizesWon.objects.order_by('drawing_id')
+    allPrizes = PrizesWon.objects.order_by('-drawing__drawingDate')
     activeTickets = GroupTicket.objects.order_by('-numbers')
     toBePaid = PrizesWon.objects.aggregate(Sum('groupPrizeAmount'))
     paidOut = 0
