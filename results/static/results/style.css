@@ -113,3 +113,24 @@ hr {
 .drawingheader {
     margin-bottom: 6px;
 }
+
+.latestdrawing {
+    text-align:center;
+}
+
+.headingnumbercircle {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    font-size: 31px;
+    font-weight:bold;
+    background: #fff;
+    border: 2px solid #666;
+}
+
+.latestdrawingheader {
+    font-size: 23px;
+    font-weight:bold;
+
+}

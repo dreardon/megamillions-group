@@ -41,22 +41,37 @@
   <div class="jumbotron" style="background-color: #BAE0FF;">
     <div class="container">
       <h1>MegaMillions Group</h1>
-      <p class="lead">This page has been established to check Megamillions group tickets against each drawing.</p>
-        <div class="dollarTotals">
-            <div class="dollarTotalLabel"><u>Prize Bank</u></div>
-                {% if toBePaid.groupPrizeAmount__sum %}
-                    <div class="dollarTotalAmount">${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}</div>
-                {% else %}
-                    <div class="dollarTotalAmount">$0.00</div>
-                {% endif %}
+      <p class="lead">This page has been established to check Mega Millions group tickets against each drawing.</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="dollarTotals">
+                    <div class="dollarTotalLabel"><u>Prize Bank</u></div>
+                        {% if toBePaid.groupPrizeAmount__sum %}
+                            <div class="dollarTotalAmount">${{ toBePaid.groupPrizeAmount__sum|stringformat:"1.2f" }}</div>
+                        {% else %}
+                            <div class="dollarTotalAmount">$0.00</div>
+                        {% endif %}
 
-            <br />
-            <div class="dollarTotalLabel"><u>Prizes Paid Out</u></div>
-            {% if toBePaid.groupPrizeAmount__sum %}
-                <div class="dollarTotalAmount">${{ paidOut|stringformat:"1.2f" }}</div>
-            {% else %}
-                <div class="dollarTotalAmount">$0.00</div>
-            {% endif %}
+                    <br />
+                    <div class="dollarTotalLabel"><u>Prizes Paid Out</u></div>
+                    {% if toBePaid.groupPrizeAmount__sum %}
+                        <div class="dollarTotalAmount">${{ paidOut|stringformat:"1.2f" }}</div>
+                    {% else %}
+                        <div class="dollarTotalAmount">$0.00</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="latestdrawing">
+                    <div class="latestdrawingheader">Last Drawing on {{ allDrawings.0.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
+                    <span class="drawingNumbers">
+                        {% for number in allDrawings.0.numbers_as_list %}
+                            <span class="headingnumbercircle">{{ number }}</span>
+                        {% endfor %}
+                            <span class="drawingMegaball headingnumbercircle">{{ allDrawings.0.megaBall|stringformat:"02d" }}</span>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
   </div>
@@ -76,7 +91,6 @@
                                 <span class="numberCircle">{{ number }}</span>
                             {% endfor %}
                                     <span class="drawingMegaball numberCircle">{{ drawing.megaBall|stringformat:"02d" }}</span>
-
                         </span>
                     </div>
                 </div>
