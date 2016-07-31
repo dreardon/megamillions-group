@@ -14,15 +14,16 @@ def index(request):
     activeTickets = GroupTicket.objects.order_by('-numbers')
     toBePaid = PrizesWon.objects.aggregate(Sum('groupPrizeAmount'))
     paidOut = 0
-    all_objects = list(PrizesWon.objects.all())
     context = {'allDrawings': allDrawings, 'allPrizes': allPrizes, 'toBePaid':toBePaid, 'activeTickets':activeTickets,'paidOut':paidOut}
     return render(request, 'results/index.html', context)
+
 
 @csrf_protect
 def matchingTickets(request,drawingid,ticketid):
     a = Drawing.objects.get(pk=drawingid)
     b = GroupTicket.objects.get(pk=ticketid)
     return HttpResponse(str(a)+str(b))
+
 
 @csrf_protect
 def results(request,drawingid):

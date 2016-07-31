@@ -21,8 +21,11 @@ class GroupTicket(MegaNumbers):
     active = models.BooleanField()
     autoPick = models.BooleanField()
 
+    class Meta:
+        verbose_name_plural = "Group Tickets"
+
     def __unicode__( self ):
-        return "{0} {1} {2}".format(self.numbers, str(self.megaBall),self.active)
+        return "{0} {1} {2} {3}".format('Numbers: '+self.numbers, 'Megaball: '+str(self.megaBall),'AutoPick: '+str(self.autoPick),'Active: '+str(self.active))
 
 
 class PrizesWon(models.Model):
@@ -35,13 +38,3 @@ class PrizesWon(models.Model):
 
     def __unicode__( self ):
         return "{0} {1} {2}".format(self.drawing, self.ticket, self.groupPrizeAmount)
-
-
-class GroupPlayers(models.Model):
-    initials = models.CharField(max_length=200)
-
-    class Meta:
-        verbose_name_plural = "Group Players"
-
-    def __unicode__( self ):
-        return "{0}".format(self.initials)
