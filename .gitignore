@@ -5,6 +5,9 @@ __pycache__/
 # VirtualEnvs settings
 venvs/*
 
+# Attachments
+attachments/*
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         url = 'https://data.ny.gov/resource/h6w8-42p9.json'
-        payload = {'$order':'draw_date DESC', '$limit': 26}
+        payload = {'$order':'draw_date DESC', '$limit': 3}
         r = requests.get(url=url,params=payload)
         data = json.loads(r.text)
         in_dates = Drawing.objects.values_list('drawingDate')
@@ -18,5 +18,6 @@ class Command(BaseCommand):
             if not Drawing.objects.filter(drawingDate=drawdate):
                 a = Drawing(numbers=str(result['winning_numbers']),megaBall=int(result['mega_ball']),multiplier=result['multiplier'],drawingDate=drawdate)
                 a.save()
-                for ticket in GroupTicket.objects.all():
+                for ticket in GroupTicket.objects.filter(active=True):
+                    #TODO check if date of drawing is between active dates for agreement period
                     checkprize(drawingid=a.id,ticketid=ticket.id)

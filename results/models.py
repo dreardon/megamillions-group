@@ -1,6 +1,19 @@
 from django.db import models
 
 
+class AgreementPeriod(models.Model):
+    periodName = models.CharField(max_length=14, default=0)
+    agreementFile = models.FileField(upload_to='attachments',null=True, blank=True)
+    startDate = models.DateField(null=True, blank=True)
+    endDate = models.DateField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Agreement Periods"
+
+    def __unicode__( self ):
+        return "{0} {1} {2}".format(self.periodName, self.startDate, self.endDate)
+
+
 class MegaNumbers(models.Model):
     numbers = models.CharField(max_length=14, default=0)
     megaBall = models.IntegerField(default=0)
@@ -18,14 +31,15 @@ class Drawing(MegaNumbers):
 
 
 class GroupTicket(MegaNumbers):
-    active = models.BooleanField()
     autoPick = models.BooleanField()
+    active = models.BooleanField()
+    agreementPeriod = models.ForeignKey(AgreementPeriod)
 
     class Meta:
         verbose_name_plural = "Group Tickets"
 
     def __unicode__( self ):
-        return "{0} {1} {2} {3}".format('Numbers: '+self.numbers, 'Megaball: '+str(self.megaBall),'AutoPick: '+str(self.autoPick),'Active: '+str(self.active))
+        return "{0} {1} {2} {3}".format('Numbers: '+self.numbers, 'Megaball: '+str(self.megaBall),'AutoPick: '+str(self.autoPick), 'Agreement Period:' +str(self.agreementPeriod))
 
 
 class PrizesWon(models.Model):
@@ -38,3 +52,14 @@ class PrizesWon(models.Model):
 
     def __unicode__( self ):
         return "{0} {1} {2}".format(self.drawing, self.ticket, self.groupPrizeAmount)
+
+
+class PaidOut(models.Model):
+    agreementPeriod = models.ForeignKey(AgreementPeriod)
+    prizeAmount = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = "Paid Out"
+
+    def __unicode__( self ):
+        return "{0} {1}".format(self.agreementPeriod, self.prizeAmount)

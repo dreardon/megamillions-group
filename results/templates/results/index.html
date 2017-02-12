@@ -54,8 +54,8 @@
 
                     <br />
                     <div class="dollarTotalLabel"><u>Prizes Paid Out</u></div>
-                    {% if toBePaid.groupPrizeAmount__sum %}
-                        <div class="dollarTotalAmount">${{ paidOut|stringformat:"1.2f" }}</div>
+                    {% if paidOut.prizeAmount__sum %}
+                        <div class="dollarTotalAmount">${{ paidOut.prizeAmount__sum|stringformat:"1.2f" }}</div>
                     {% else %}
                         <div class="dollarTotalAmount">$0.00</div>
                     {% endif %}
