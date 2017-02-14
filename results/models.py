@@ -33,7 +33,7 @@ class Drawing(MegaNumbers):
 class GroupTicket(MegaNumbers):
     autoPick = models.BooleanField()
     active = models.BooleanField()
-    agreementPeriod = models.ForeignKey(AgreementPeriod)
+    agreementPeriod = models.ForeignKey(AgreementPeriod,null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Group Tickets"
