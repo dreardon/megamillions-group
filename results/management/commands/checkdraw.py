@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 import requests
 import json
-from results.models import Drawing, GroupTicket
+import datetime
+from datetime import date
+from results.models import Drawing, GroupTicket, PrizesWon
 from results.services import checkprize
 
 class Command(BaseCommand):
@@ -12,12 +14,11 @@ class Command(BaseCommand):
         payload = {'$order':'draw_date DESC', '$limit': 3}
         r = requests.get(url=url,params=payload)
         data = json.loads(r.text)
-        in_dates = Drawing.objects.values_list('drawingDate')
         for result in data:
             drawdate = result['draw_date'].split('T')[0]
             if not Drawing.objects.filter(drawingDate=drawdate):
                 a = Drawing(numbers=str(result['winning_numbers']),megaBall=int(result['mega_ball']),multiplier=result['multiplier'],drawingDate=drawdate)
                 a.save()
-                for ticket in GroupTicket.objects.filter(active=True):
-                    #TODO check if date of drawing is between active dates for agreement period
-                    checkprize(drawingid=a.id,ticketid=ticket.id)
+                for ticket in GroupTicket.objects.all():
+                    if ticket.agreementPeriod.startDate <=  (datetime.datetime.strptime(drawdate, '%Y-%m-%d').date()) <= ticket.agreementPeriod.endDate:
+                        checkprize(drawingid=a.id,ticketid=ticket.id)
