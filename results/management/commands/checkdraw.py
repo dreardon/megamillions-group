@@ -3,7 +3,7 @@ import requests
 import json
 import datetime
 from datetime import date
-from results.models import Drawing, GroupTicket, PrizesWon
+from results.models import Drawing, GroupTicket
 from results.services import checkprize
 
 class Command(BaseCommand):
