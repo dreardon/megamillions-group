@@ -25,8 +25,7 @@ SECRET_KEY = '#4o1$3f#1$hfgd74jd)fu20%%c-@cp5=^m7^2bq^8h7%2hl-_f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['www.megamillionsgroup.com']
 
 # Application definition
 
