@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         url = 'https://data.ny.gov/resource/h6w8-42p9.json'
-        payload = {'$order':'draw_date DESC', '$limit': 3}
+        payload = {'$order':'draw_date DESC', '$limit': 102}
         r = requests.get(url=url,params=payload)
         data = json.loads(r.text)
         for result in data:

@@ -11,7 +11,13 @@ class AgreementPeriod(models.Model):
         verbose_name_plural = "Agreement Periods"
 
     def __unicode__( self ):
-        return "{0} {1} {2}".format(self.periodName, self.startDate, self.endDate)
+        return "{0} {1} {2} {3}".format(self.periodName, self.startDate, '-', self.endDate)
+
+    def getRange(self):
+        return "{0} {1} {2}".format(self.startDate, '-', self.endDate)
+
+    def getName(self):
+        return "{0}".format(self.periodName)
 
 
 class MegaNumbers(models.Model):
@@ -32,7 +38,6 @@ class Drawing(MegaNumbers):
 
 class GroupTicket(MegaNumbers):
     autoPick = models.BooleanField()
-    active = models.BooleanField()
     agreementPeriod = models.ForeignKey(AgreementPeriod,null=True, blank=True)
 
     class Meta:

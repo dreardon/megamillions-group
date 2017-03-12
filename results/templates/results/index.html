@@ -65,11 +65,22 @@
                 <div class="latestdrawing">
                     <div class="latestdrawingheader">Last Drawing on {{ allDrawings.0.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
                     <span class="drawingNumbers">
-                        {% for number in allDrawings.0.numbers_as_list %}
+                        {% for number in allCurrentDrawings.0.numbers_as_list %}
                             <span class="headingnumbercircle">{{ number }}</span>
                         {% endfor %}
-                            <span class="drawingMegaball headingnumbercircle">{{ allDrawings.0.megaBall|stringformat:"02d" }}</span>
+                            <span class="drawingMegaball headingnumbercircle">{{ allCurrentDrawings.0.megaBall|stringformat:"02d" }}</span>
                     </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="agreementHeader">
+                    {% if currentPeriod %}
+                        <div class="latestdrawingheader">Current Agreement Period</div>
+                        {{ currentPeriod.periodName }}<br>
+                        {{ currentPeriod.startDate }} - {{ currentPeriod.endDate }}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -81,8 +92,8 @@
     <div class="row">
       <div class="col-md-4">
         <div class="dataheader drawingheader">Lottery Drawings</div>
-        {% if allDrawings %}
-                {% for drawing in allDrawings %}
+        {% if allCurrentDrawings %}
+                {% for drawing in allCurrentDrawings %}
                 <div class="row ballRow drawingData">
                     <div class="col-md-12">
                         <span class="drawingDate">{{ drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
@@ -95,6 +106,34 @@
                     </div>
                 </div>
                 {% endfor %}
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse">Historical Drawings</a>
+                            </h4>
+                        </div>
+                        <div id="collapse" class="panel-collapse collapse">
+                            {% for drawing in allHistoricalDrawings %}
+                                <div class="row ballRow drawingData">
+                                    <div class="col-md-12">
+                                        <span class="drawingDate">{{ drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
+                                        <span class="drawingNumbers">
+                                            {% for number in drawing.numbers_as_list %}
+                                                <span class="numberCircle">{{ number }}</span>
+                                            {% endfor %}
+                                                    <span class="drawingMegaball numberCircle">{{ drawing.megaBall|stringformat:"02d" }}</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
         {% else %}
             <p>No drawings are available.</p>
         {% endif %}
@@ -120,8 +159,8 @@
       </div>
       <div class="col-md-4">
         <div class="dataheader">Prizes Won</div>
-        {% if allPrizes %}
-            {% for prize in allPrizes %}
+        {% if allPrizes or allHistoricalPrizes %}
+            {% for prize in allCurrentPrizes %}
                 <div class="row">
                     <div class="col-md-12 prizeAmount">
                         ${{ prize.groupPrizeAmount }}.00
@@ -151,6 +190,48 @@
                 </div>
             <hr>
             {% endfor %}
+
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">Historical Winnings</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        {% for prize in allHistoricalPrizes %}
+                            <div class="row">
+                                <div class="col-md-12 prizeAmount">
+                                    ${{ prize.groupPrizeAmount }}.00
+                                </div>
+                            </div>
+
+                            <div class="row ballRow">
+                                <div class="col-md-12">
+                                    <span class="drawingDate">{{ prize.drawing.drawingDate|date:"SHORT_DATE_FORMAT" }}</span>
+                                    <span class="ticketNumbers">
+                                        {% for number in prize.ticket.numbers_as_list  %}
+                                            {% if number in prize.drawing.numbers_as_list %}
+                                                <span class="matchingNumberCircle">{{ number }}</span>
+                                            {% else %}
+                                                <span class="numberCircle">{{ number }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <span class="drawingMegaball">
+                                            {% if prize.ticket.megaBall == prize.drawing.megaBall %}
+                                                <span class="matchingNumberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                            {% else %}
+                                                <span class="numberCircle">{{ prize.ticket.megaBall|stringformat:"02d" }}</span>
+                                            {% endif %}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% else %}
             <p>No prizes have been won (yet).</p>
         {% endif %}
