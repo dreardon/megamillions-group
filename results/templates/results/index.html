@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-6">
                 <div class="latestdrawing">
-                    <div class="latestdrawingheader">Last Drawing on {{ allDrawings.0.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
+                    <div class="latestdrawingheader">Last Active Drawing on {{ allCurrentDrawings.0.drawingDate|date:"SHORT_DATE_FORMAT" }}</div>
                     <span class="drawingNumbers">
                         {% for number in allCurrentDrawings.0.numbers_as_list %}
                             <span class="headingnumbercircle">{{ number }}</span>
