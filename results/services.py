@@ -1,4 +1,4 @@
-from models import Drawing, PrizesWon, GroupTicket
+from results.models import Drawing, PrizesWon, GroupTicket
 
 
 def calcprize(numnumbers, megaball):
@@ -38,4 +38,4 @@ def checkprize(drawingid,ticketid):
     if prizeamount:
         c = PrizesWon(drawing=a,ticket=b,groupPrizeAmount=prizeamount)
         c.save()
-        print c
+        print (c)
