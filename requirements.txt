@@ -1,5 +1,5 @@
 Django==1.9.7
-requests
+requests[security]
 django-debug-toolbar
 django-crontab
 sqlparse==0.1.19
