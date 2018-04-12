@@ -1,11 +1,7 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.http import Http404
-from django.template import loader
-from datetime import date
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.db.models import Count, Sum, Max
+from django.db.models import Sum
 from django.views.decorators.csrf import csrf_protect
-from django.core import serializers
 from .models import Drawing, PrizesWon, GroupTicket, PaidOut, AgreementPeriod
 
 
