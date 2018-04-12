@@ -123,3 +123,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+try:
+    exec(open(os.path.join(BASE_DIR, 'megamillions-group/local_settings.py')).read())
+    print('Using local_settings.py file')
+except OSError as e:
+    print('Using default settings.py file')

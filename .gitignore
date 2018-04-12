@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Local Settings
+megamillions-group/local_settings.py
+
 # VirtualEnvs settings
 venvs/*
 

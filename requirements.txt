@@ -8,6 +8,7 @@ Django==2.0.4
 django-crontab==0.7.1
 django-debug-toolbar==1.9.1
 idna==2.6
+psycopg2-binary==2.7.4
 pycparser==2.18
 pyOpenSSL==17.5.0
 pytz==2018.4
